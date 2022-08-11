@@ -49,7 +49,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jwy-k9-y93">
-                                <rect key="frame" x="145" y="200" width="142" height="25"/>
+                                <rect key="frame" x="73" y="170" width="267" height="79"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -61,6 +61,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="UO1-3q-MMs"/>
                     <connections>
+                        <outlet property="alertText" destination="jwy-k9-y93" id="txw-1E-kgh"/>
                         <outlet property="selectedSegment" destination="HC9-S5-vTx" id="zrg-BD-3je"/>
                         <outlet property="textField" destination="bqr-Xy-p3x" id="zg6-xt-sMA"/>
                     </connections>
