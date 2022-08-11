@@ -8,8 +8,7 @@
 import Foundation
 import RealmSwift
 
-class Memo: Object {
-    @Persisted(primaryKey: true)var id = 0
+class Filter: Object {
     @Persisted var text = ""
     @Persisted var selectedButton = 0
 }
