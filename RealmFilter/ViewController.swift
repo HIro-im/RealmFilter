@@ -21,6 +21,9 @@ class ViewController: UIViewController {
     var currentRightDataCount: Int = 0
     let saveLimit: Int = 3
     
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let allData = realm.objects(Filter.self)

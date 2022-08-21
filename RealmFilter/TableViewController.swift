@@ -34,14 +34,7 @@ class TableViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
 
-        switch navigationController?.tabBarItem.tag {
-        case selectedTab.isBook.rawValue:
-            selectIfTiming = Timing.Lunch.rawValue
-        case selectedTab.isRated.rawValue:
-            selectIfTiming = Timing.Dinner.rawValue
-        default:
-            print("another")
-        }
+        setTiming()
         
         filtData = getData(selectIfTiming)
         
@@ -53,16 +46,31 @@ class TableViewController: UIViewController {
         return filterData
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setTiming() {
+        switch navigationController?.tabBarItem.tag {
+        case selectedTab.isBook.rawValue:
+            selectIfTiming = Timing.Lunch.rawValue
+        case selectedTab.isRated.rawValue:
+            selectIfTiming = Timing.Dinner.rawValue
+        default:
+            print("another")
+        }
     }
-    */
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // 挙動観測のための一文
+        print("table viewWillAppear")
+        
+        // realm内のテーブルを取り出して、メンバ変数への格納と件数を取得する
+        setTiming()
+        filtData = getData(selectIfTiming)
+        
+        // リストビューを再読込する
+        tableView.reloadData()
+        
+    }
 
 }
 
