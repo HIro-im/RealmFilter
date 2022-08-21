@@ -21,8 +21,11 @@ class ViewController: UIViewController {
     var currentRightDataCount: Int = 0
     let saveLimit: Int = 3
     
+    let idForLunch:String = "Lunch"
+    let idForDinner:String = "Dinner"
     
-    
+    var searchKey:Int = 0
+    var notificationId: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +81,7 @@ class ViewController: UIViewController {
         print("すべてのデータ\(allData)")
         
         currentCounterUpdate()
-        
+        notificationRegister()
     }
     
     
@@ -86,5 +89,33 @@ class ViewController: UIViewController {
         
     }
     
+    func notificationRegister() {
+
+        let content = UNMutableNotificationContent()
+
+        switch selectedSegment.selectedSegmentIndex {
+        case SegmentSelected.isLeft.rawValue:
+            searchKey = SegmentSelected.isLeft.rawValue
+            notificationId = idForLunch
+            
+        case SegmentSelected.isRight.rawValue:
+            searchKey = SegmentSelected.isRight.rawValue
+            notificationId = idForDinner
+            
+        default:
+            print("Irregular")
+            return
+        }
+        // 共通化できそう
+        let forNotificationRecord = realm.objects(Filter.self).filter("selectedButton == %@", searchKey)
+        let latestRecord = forNotificationRecord[forNotificationRecord.count - 1].text
+        
+        content.title = latestRecord
+        content.body = "気になっていたお店に行きませんか" + notificationId
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
+        let request = UNNotificationRequest(identifier: notificationId, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request)
+    }
+
 }
 

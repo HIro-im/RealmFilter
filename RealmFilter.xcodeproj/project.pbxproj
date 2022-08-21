@@ -19,6 +19,7 @@
 		5A24C61E28A2FF3E00E8324B /* RealmFilterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A24C61D28A2FF3E00E8324B /* RealmFilterUITestsLaunchTests.swift */; };
 		5A24C62B28A3075A00E8324B /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A24C62A28A3075A00E8324B /* Filter.swift */; };
 		5AFFBAC728A4C0DF0025C9A9 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFFBAC628A4C0DF0025C9A9 /* TableViewController.swift */; };
+		5AFFBB5228B2D43A0025C9A9 /* Parameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFFBB5128B2D43A0025C9A9 /* Parameter.swift */; };
 		AD25E0F5B12A2F5A5FB13462 /* Pods_RealmFilterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CAD7E562E48F31AC325ECE /* Pods_RealmFilterTests.framework */; };
 		E44672A70C873AEA80166A54 /* Pods_RealmFilter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7E3570987C39C9CE689B7E0 /* Pods_RealmFilter.framework */; };
 /* End PBXBuildFile section */
@@ -59,6 +60,7 @@
 		5A24C61D28A2FF3E00E8324B /* RealmFilterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFilterUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5A24C62A28A3075A00E8324B /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		5AFFBAC628A4C0DF0025C9A9 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		5AFFBB5128B2D43A0025C9A9 /* Parameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parameter.swift; sourceTree = "<group>"; };
 		8397F501C046D27A47B5066C /* Pods-RealmFilterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmFilterTests.debug.xcconfig"; path = "Target Support Files/Pods-RealmFilterTests/Pods-RealmFilterTests.debug.xcconfig"; sourceTree = "<group>"; };
 		877A2938BE6C9247F957FAEF /* Pods-RealmFilter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmFilter.debug.xcconfig"; path = "Target Support Files/Pods-RealmFilter/Pods-RealmFilter.debug.xcconfig"; sourceTree = "<group>"; };
 		908E7724D59F5287368E53B6 /* Pods-RealmFilterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmFilterTests.release.xcconfig"; path = "Target Support Files/Pods-RealmFilterTests/Pods-RealmFilterTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 		5A24C5F928A2FF3900E8324B /* RealmFilter */ = {
 			isa = PBXGroup;
 			children = (
+				5AFFBB5128B2D43A0025C9A9 /* Parameter.swift */,
 				5A24C5FA28A2FF3900E8324B /* AppDelegate.swift */,
 				5A24C5FC28A2FF3900E8324B /* SceneDelegate.swift */,
 				5AFFBAC628A4C0DF0025C9A9 /* TableViewController.swift */,
@@ -415,6 +418,7 @@
 				5A24C5FF28A2FF3900E8324B /* ViewController.swift in Sources */,
 				5A24C62B28A3075A00E8324B /* Filter.swift in Sources */,
 				5A24C5FB28A2FF3900E8324B /* AppDelegate.swift in Sources */,
+				5AFFBB5228B2D43A0025C9A9 /* Parameter.swift in Sources */,
 				5AFFBAC728A4C0DF0025C9A9 /* TableViewController.swift in Sources */,
 				5A24C5FD28A2FF3900E8324B /* SceneDelegate.swift in Sources */,
 			);
