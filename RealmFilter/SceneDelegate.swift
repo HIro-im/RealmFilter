@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+class SceneDelegate: UIResponder, UIWindowSceneDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
@@ -16,6 +16,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self
+        
         if let tabBarController = window?.rootViewController as? UITabBarController {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "SecondNav")
@@ -26,6 +29,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             tabBarController.viewControllers?.append(vc2)
         }
         guard let _ = (scene as? UIWindowScene) else { return }
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        //　Storyboardを指定
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        // Viewcontrollerを指定
+        let initialViewController = storyboard.instantiateViewController(withIdentifier:"SecondNav")
+        // rootViewControllerに入れる
+        self.window?.rootViewController = initialViewController
+        // 表示
+        self.window?.makeKeyAndVisible()
+        
+        completionHandler()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

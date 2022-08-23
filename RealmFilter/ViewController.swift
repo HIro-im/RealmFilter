@@ -29,11 +29,26 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        notificationD()
         let allData = realm.objects(Filter.self)
         print("すべてのデータ\(allData)")
         
         currentCounterUpdate()
         
+    }
+    
+    func notificationD() {
+        
+        UNUserNotificationCenter.current().getDeliveredNotifications { (notification) in
+            if notification.isEmpty {
+                return
+            }
+            if notification[0].request.identifier == "Lunch"  {
+                print("Lunch notification")
+            } else {
+                print("Dinner notification")
+            }
+        }
     }
 
     func currentCounterUpdate() {

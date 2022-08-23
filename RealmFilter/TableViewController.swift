@@ -31,6 +31,7 @@ class TableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        notificationD()
         self.tableView.delegate = self
         self.tableView.dataSource = self
 
@@ -56,6 +57,21 @@ class TableViewController: UIViewController {
             print("another")
         }
     }
+    
+    func notificationD() {
+        
+        UNUserNotificationCenter.current().getDeliveredNotifications { (notification) in
+            if notification.isEmpty {
+                return
+            }
+            if notification[0].request.identifier == "Lunch"  {
+                print("Lunch notification")
+            } else {
+                print("Dinner notification")
+            }
+        }
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
