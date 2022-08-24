@@ -73,7 +73,7 @@
         <!--Table View Controller-->
         <scene sceneID="RUl-Yx-v0I">
             <objects>
-                <viewController id="AkT-nl-xWa" customClass="TableViewController" customModule="RealmFilter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TableView" id="AkT-nl-xWa" customClass="TableViewController" customModule="RealmFilter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eaH-IF-2kN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,7 +114,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="OS2-Ng-hzN">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="sVU-e6-EPd" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBar" automaticallyAdjustsScrollViewInsets="NO" id="sVU-e6-EPd" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ibm-FM-nqh">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

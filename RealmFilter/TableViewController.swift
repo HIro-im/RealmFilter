@@ -30,6 +30,9 @@ class TableViewController: UIViewController {
     var filtData: Results<Filter>?
     
     override func viewDidLoad() {
+        
+        // 挙動観測のための一文
+        print("table viewDidLoad")
         super.viewDidLoad()
         notificationD()
         self.tableView.delegate = self
@@ -66,8 +69,10 @@ class TableViewController: UIViewController {
             }
             if notification[0].request.identifier == "Lunch"  {
                 print("Lunch notification")
+                self.selectIfTiming = Timing.Lunch.rawValue
             } else {
                 print("Dinner notification")
+                self.selectIfTiming = Timing.Dinner.rawValue
             }
         }
     }
@@ -86,6 +91,14 @@ class TableViewController: UIViewController {
         // リストビューを再読込する
         tableView.reloadData()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // 挙動観測のための一文
+        print("table viewDidAppear")
+
     }
 
 }

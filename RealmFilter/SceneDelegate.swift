@@ -38,10 +38,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UNUserNotificationCente
         //　Storyboardを指定
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         // Viewcontrollerを指定
-        let initialViewController = storyboard.instantiateViewController(withIdentifier:"SecondNav")
+        let initialViewController = storyboard.instantiateViewController(withIdentifier:"TableView")
         // rootViewControllerに入れる
         self.window?.rootViewController = initialViewController
         // 表示
+        self.window?.backgroundColor = UIColor.white
+        
         self.window?.makeKeyAndVisible()
         
         completionHandler()
