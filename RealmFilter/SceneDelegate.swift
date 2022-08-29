@@ -34,17 +34,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UNUserNotificationCente
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        //　Storyboardを指定
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        // Viewcontrollerを指定
-        let initialViewController = storyboard.instantiateViewController(withIdentifier:"TableView")
-        // rootViewControllerに入れる
-        self.window?.rootViewController = initialViewController
-        // 表示
-        self.window?.backgroundColor = UIColor.white
         
-        self.window?.makeKeyAndVisible()
+        if let vc = window?.rootViewController as? UITabBarController {
+            if let nextVC = vc.viewControllers?[1] as? UINavigationController {
+                if let topVC = nextVC.topViewController as? TableViewController {
+                    topVC.selectIfTiming = 1
+                    vc.selectedViewController = nextVC
+                }
+            }
+        }
+
+        
         
         completionHandler()
     }
