@@ -8,17 +8,6 @@
 import UIKit
 import RealmSwift
 
-enum Timing: Int {
-    case Lunch = 0
-    case Dinner = 1
-    
-}
-
-enum selectedTab: Int {
-    case isBook = 1
-    case isRated = 2
-    
-}
 
 class TableViewController: UIViewController {
 
