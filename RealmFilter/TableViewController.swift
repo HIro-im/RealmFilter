@@ -23,7 +23,6 @@ class TableViewController: UIViewController {
         // 挙動観測のための一文
         print("table viewDidLoad")
         super.viewDidLoad()
-        notificationD()
         self.tableView.delegate = self
         self.tableView.dataSource = self
 
@@ -40,6 +39,7 @@ class TableViewController: UIViewController {
     }
     
     func setTiming() {
+        print(navigationController?.tabBarItem)
         switch navigationController?.tabBarItem.tag {
         case selectedTab.isBook.rawValue:
             selectIfTiming = Timing.Lunch.rawValue
@@ -49,23 +49,6 @@ class TableViewController: UIViewController {
             print("another")
         }
     }
-    
-    func notificationD() {
-        
-        UNUserNotificationCenter.current().getDeliveredNotifications { (notification) in
-            if notification.isEmpty {
-                return
-            }
-            if notification[0].request.identifier == "Lunch"  {
-                print("Lunch notification")
-                self.selectIfTiming = Timing.Lunch.rawValue
-            } else {
-                print("Dinner notification")
-                self.selectIfTiming = Timing.Dinner.rawValue
-            }
-        }
-    }
-
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

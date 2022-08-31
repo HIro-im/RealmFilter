@@ -35,10 +35,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UNUserNotificationCente
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         
+        var isTappedIdentifier:Int = 0
+        switch response.notification.request.identifier {
+        case "Lunch":
+            isTappedIdentifier = selectedTab.isBook.rawValue
+        case "Dinner":
+            isTappedIdentifier = selectedTab.isRated.rawValue
+        default:
+            print("Tapped Irregular")
+            
+        }
+        
+        print(response.notification.request.identifier)
+        
         if let vc = window?.rootViewController as? UITabBarController {
-            if let nextVC = vc.viewControllers?[1] as? UINavigationController {
+            if let nextVC = vc.viewControllers?[isTappedIdentifier] as? UINavigationController {
                 if let topVC = nextVC.topViewController as? TableViewController {
-                    topVC.selectIfTiming = 1
+                    topVC.navigationController?.tabBarItem.tag = isTappedIdentifier
                     vc.selectedViewController = nextVC
                 }
             }
