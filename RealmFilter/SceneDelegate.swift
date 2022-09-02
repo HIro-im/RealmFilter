@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate, UNUserNotificationCenterDelegate {
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
@@ -16,8 +16,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UNUserNotificationCente
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        let center = UNUserNotificationCenter.current()
-        center.delegate = self
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (granted, _) in
+            if granted {
+                UNUserNotificationCenter.current().delegate = self
+            }
+        }
         
         if let tabBarController = window?.rootViewController as? UITabBarController {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -31,36 +34,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UNUserNotificationCente
         guard let _ = (scene as? UIWindowScene) else { return }
     }
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
-        
-        var isTappedIdentifier:Int = 0
-        switch response.notification.request.identifier {
-        case "Lunch":
-            isTappedIdentifier = selectedTab.isBook.rawValue
-        case "Dinner":
-            isTappedIdentifier = selectedTab.isRated.rawValue
-        default:
-            print("Tapped Irregular")
-            
-        }
-        
-        print(response.notification.request.identifier)
-        
-        if let vc = window?.rootViewController as? UITabBarController {
-            if let nextVC = vc.viewControllers?[isTappedIdentifier] as? UINavigationController {
-                if let topVC = nextVC.topViewController as? TableViewController {
-                    topVC.navigationController?.tabBarItem.tag = isTappedIdentifier
-                    vc.selectedViewController = nextVC
-                }
-            }
-        }
-
-        
-        
-        completionHandler()
-    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -93,3 +66,46 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UNUserNotificationCente
 
 }
 
+
+extension SceneDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        if #available(iOS 14.0, *) {
+            completionHandler([[.banner, .list, .sound]])
+        } else {
+            completionHandler([[.alert, .sound]])
+        }
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        var isTappedIdentifier:Int = 0
+        switch response.notification.request.identifier {
+        case "Lunch":
+            isTappedIdentifier = selectedTab.isBook.rawValue
+        case "Dinner":
+            isTappedIdentifier = selectedTab.isRated.rawValue
+        default:
+            print("Tapped Irregular")
+            
+        }
+        
+        print(response.notification.request.identifier)
+        
+        if let vc = window?.rootViewController as? UITabBarController {
+            if let nextVC = vc.viewControllers?[isTappedIdentifier] as? UINavigationController {
+                if let topVC = nextVC.topViewController as? TableViewController {
+                    topVC.navigationController?.tabBarItem.tag = isTappedIdentifier
+                    vc.selectedViewController = nextVC
+                }
+            }
+        }
+
+        
+        
+        completionHandler()
+    }
+}
